@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
 from .models import MonthlyReport, PathfinderUpload
 from django_eveonline_connector.models import PrimaryEveCharacterAssociation, EveCharacter
+from django.contrib.auth.decorators import permission_required, login_required
 import logging 
 logger = logging.getLogger(__name__)
 # Create your views here.
+@login_required
 def list_reports(request):
     return render(request, 'django_pathfinder_statcrunch/adminlte/list_reports.html', context={
         "reports": MonthlyReport.objects.all()
     })
 
+
+@login_required
 def refresh_report(request, pk):
     uploads = PathfinderUpload.objects.filter(report__pk=pk)
     for upload in uploads:
@@ -73,6 +77,8 @@ def refresh_report(request, pk):
     
     return redirect('django-pathfinder-statcrunch-view-report', pk)
 
+
+@login_required
 def view_report(request, pk):
     context = {}
     report = MonthlyReport.objects.get(pk=pk)
