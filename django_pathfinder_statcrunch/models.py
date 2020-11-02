@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import json
 
+def get_default_statistics():
+    return json.dumps({
+        'characters': {},
+        'corporations': {},
+    })
+
 class PathfinderUpload(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     report = models.ForeignKey("MonthlyReport", on_delete=models.CASCADE)
@@ -10,7 +16,7 @@ class PathfinderUpload(models.Model):
 
 class MonthlyReport(models.Model):
     date = models.DateField()
-    statistics = models.TextField(null=True, editable=False)
+    statistics = models.TextField(blank=True, null=True, editable=False, default=get_default_statistics())
 
     def __str__(self):
         return self.date.strftime("%B %Y")

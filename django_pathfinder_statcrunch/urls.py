@@ -10,4 +10,6 @@ urlpatterns = [
          name="django-pathfinder-statcrunch-list-reports"),
     path('reports/<int:pk>/', views.view_report,
         name="django-pathfinder-statcrunch-view-report"),
+    path('reports/<int:pk>/refresh/', views.refresh_report,
+         name="django-pathfinder-statcrunch-view-report-refresh"),
 ]
