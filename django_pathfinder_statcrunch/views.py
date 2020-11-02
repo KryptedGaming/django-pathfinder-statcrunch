@@ -30,7 +30,7 @@ def refresh_report(request, pk):
             if len(data) != 57:
                 logger.info(f"Skipping line in PF read: {line}")
                 continue
-            name = (data[2]).replace('"', "").strip()
+            name = str((data[2]).replace('"', "").strip())
             try:
                 current_character = EveCharacter.objects.get(name=name)
                 primary_character = current_character.get_primary_character(
@@ -43,7 +43,7 @@ def refresh_report(request, pk):
                     f"Skipping PF line, failed to find character for {name}")
                 continue
             signatures = int(data[55].replace('"', "").strip())
-            if current_character.name in report:
+            if current_character.name in report['characters']:
                 report['characters'][current_character.name]['signatures'] += int(
                     signatures)
             else:
@@ -73,7 +73,7 @@ def refresh_report(request, pk):
 
         # update stats
         upload.report.update_stats(report)
-        upload.delete()
+        # upload.delete()
     
     return redirect('django-pathfinder-statcrunch-view-report', pk)
 
