@@ -9,8 +9,8 @@ class PathfinderUpload(models.Model):
     file = models.FileField()
 
 class MonthlyReport(models.Model):
-    date = models.DateField(auto_now=True)
-    statistics = models.TextField(blank=True, null=True)
+    date = models.DateField()
+    statistics = models.TextField(null=True, editable=False)
 
     def __str__(self):
         return self.date.strftime("%B %Y")
