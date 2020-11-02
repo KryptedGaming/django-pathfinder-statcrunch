@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_package_template',
+    'django_pathfinder_statcrunch',
 ]
 
 MIDDLEWARE = [
