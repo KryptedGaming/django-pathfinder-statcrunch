@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-Pathfinder Reports
+View Report
 {% endblock %}
 
-{% block header %}
-Pathfinder
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'django-pathfinder-statcrunch-list-reports' %}">Pathfinder Reports</a></li>
+{% endblock %}
+
+{% block breadcrumb %}
+View Report
 {% endblock %}
 
 {% block description %}
@@ -13,11 +17,13 @@ View Report
 <a href="{% url 'django-pathfinder-statcrunch-view-report-refresh' pk %}"><i class="fa fa-refresh"></i></a>
 {% endblock %}
 {% block content %}
-<div class="box box-primary">
-    <div class="box-header">
-        <h3>Character Statistics</h3>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">
+            Character Statistics
+        </h3>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <table class="datatable table table-bordered table-hover">
             <thead>
                 <tr>
@@ -47,11 +53,13 @@ View Report
     </div>
 </div>
 
-<div class="box box-primary">
-    <div class="box-header">
-        <h3>Corporation Statistics</h3>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">
+            Character Statistics
+        </h3>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <table class="datatable table table-bordered table-hover">
             <thead>
                 <tr>
@@ -87,7 +95,7 @@ View Report
     $(function () {
         $('table').DataTable({
             'paging': true,
-            'lengthChange': false,
+            'lengthChange': true,
             'searching': true,
             'ordering': true,
             'info': true,
